@@ -18,17 +18,19 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active dropdown">
-                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Education
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">Southeast Community College</a>
-                                <a class="dropdown-item" href="#">University of Nebraska-Lincoln</a>
-                                <a class="dropdown-item" href="#">Hastings College</a>
-                            </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Education</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Work Experience</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -36,42 +38,45 @@
         </div>
         <div class="container mt-4">            
             <div>
-                <h6>About Me</h6>
-            </div>
-            <div>
-                <h6>Education</h6>
-                <ul>
-                    <li>
-                        Hastings College
-                        <ul>
-                            <li>2010-2013</li>
-                            <li>Marketing Major</li>
-                            <li>Spanish, Economics, Accounting Concentrations</li>
-                        </ul>
-                    </li>
-                    <li>
-                        University of Nebraska-Lincoln
-                        <ul>
-                            <li>2013-2015</li>
-                            <li>Bachelor's Degree, Business Administration</li>
-                            <li>Marketing Major</li>
-                        </ul>
-                    </li>
-                    <div>
-                        Undergraduate Cumulative GPA: 3.516
+                <h5>Education</h5>
+                <hr>
+                <div id="educationCard" class="card">
+                    <h6 class="card-header">Southeast Community College</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">Associate's Degree, Computer Information Technology</div>
+                            <div class="col-3">10/2016-12/2018</div>
+                        </div>
+                        <p class="card-text">PC/Web Application Development Focus</p>                        
                     </div>
-                    <li>
-                        Southeast Community College
-                        <ul>
-                            <li>2016-2018</li>
-                            <li>Associate's Degree, Computer Information Technology</li>
-                            <li>PC/Web Application Development Focus</li>
-                        </ul>
-                    </li>
-                </ul>
+                </div>
+                <div id="educationCard" class="card mt-3">
+                    <h6 class="card-header">University of Nebraska-Lincoln</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">Bachelor's Degree, Business Administration</div>
+                            <div class="col-3">8/2013-5/2015</div>
+                        </div>
+                        <p class="card-text">Marketing Major</p>                        
+                    </div>
+                </div>
+                <div id="educationCard" class="card mt-3">
+                    <h6 class="card-header">Hastings College</h6>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-9">Marketing Major</div>
+                            <div class="col-3">8/2010-5/2013</div>
+                        </div>
+                        <p class="card-text">Spanish, Economics, Accounting Concentrations</p>                        
+                    </div>
+                </div>            
+                <div>
+                    Undergraduate Cumulative GPA: 3.516
+                </div>
             </div>
             <div>
-                <h6>Work Experience</h6>
+                <h5>Work Experience</h5>
+                <hr>
                 <ul>
                     <li>
                         Software Developer
@@ -95,6 +100,14 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+            <div>
+                <h5>About Me</h5>
+                <hr>
+            </div>
+            <div>
+                <h5>Contact <Menu></Menu></h5>
+                <hr>
             </div>
         </div>
 
