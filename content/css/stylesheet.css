@@ -11,8 +11,9 @@ div#menuLeft {
 
 #menuLeftUpper {
     height: 40%;
+    min-height: 225px;
     background-color: rgb(0, 51, 51);
-    font-size: .95em;    
+    /* font-size: .95em;     */
 }
 
 #menuLeftLower {
@@ -20,9 +21,25 @@ div#menuLeft {
     background-color: rgb(13, 77, 77);
     /* font-size: .9em;  */
 }
-a.link {
+
+#name {
+    font-weight: 600;
+}
+
+#position {
+    font-size: .95em;   
+}
+a.link, .school {
     font-size: .85em;
     color: rgb(255, 255, 255);    
+}
+.degree {
+    font-size: .8em;
+    color: rgb(255, 255, 255);
+}
+
+.education-year {
+    font-size: .8em;
 }
 a.link:hover {
     color: rgb(255, 255, 255); 
@@ -32,6 +49,9 @@ a.link:hover {
 @media (max-width: 768px) { 
     div#menuLeft {
         max-width: 768px;
-        height: 50%;
+        height: 100%;        
+    }
+    div#menuLeftUpper, div#menuLeftLower {
+        height: auto;   
     }
 }
