@@ -16,7 +16,10 @@ div#menuLeft {
     background-color: rgb(0, 51, 51);
     /* font-size: .95em;     */
 }
-
+.row:before, .row:after {
+    width: 0px;
+    height: 0px;
+}
 #menuLeftLower {
     height: 80%;
     background-color: rgb(13, 77, 77);
