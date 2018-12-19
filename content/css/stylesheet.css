@@ -1,6 +1,10 @@
 html, body, #container {
     min-height: 100vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
+}
+
+#container {    
+    margin: 0 auto;
 }
 
 div#menuLeft {
@@ -17,8 +21,7 @@ div#menuLeft {
     /* font-size: .95em;     */
 }
 .row:before, .row:after {
-    width: 0px;
-    height: 0px;
+    display: inline-block;
 }
 #menuLeftLower {
     height: 80%;
