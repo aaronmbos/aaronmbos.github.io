@@ -14,19 +14,16 @@ div#menuLeft {
 }
 
 #menuLeftUpper {
-    height: 40%;
-    max-height: 225px;
+    height: auto;
     min-height: 225px;
     background-color: rgb(0, 51, 51);
-    /* font-size: .95em;     */
 }
 .row:before, .row:after {
     display: inline-block;
 }
 #menuLeftLower {
-    height: 80%;
+    height: 70%;
     background-color: rgb(13, 77, 77);
-    /* font-size: .9em;  */
 }
 
 .semi-bold {
