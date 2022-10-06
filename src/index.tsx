@@ -1,12 +1,33 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import "./styles/index.css";
+import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { AUTH_TOKEN } from "./constants";
+
+const httpLink = createHttpLink({
+  uri: "https://flyby-gateway.herokuapp.com/",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = AUTH_TOKEN;
+  return {
+    headers: {
+      ...headers,
+      authorization: `Bearer ${token}`,
+    },
+  };
+});
 
 const client = new ApolloClient({
-  uri: "https://flyby-gateway.herokuapp.com/",
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
