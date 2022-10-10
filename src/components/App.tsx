@@ -1,58 +1,54 @@
 import React from "react";
-import logo from "../logo.svg";
 import "../styles/App.css";
 import { useQuery, gql } from "@apollo/client";
 
-const GET_LOCATIONS = gql`
-  query GetLocations {
-    locations {
-      id
+const GET_VIEWER = gql`
+  query GetViewer {
+    viewer {
       name
-      description
-      photo
+      login
+      email
+      avatarUrl
+      location
+      bio
+      twitterUsername
+      websiteUrl
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
     }
   }
 `;
 
-function DisplayLocations() {
-  const { loading, error, data } = useQuery(GET_LOCATIONS);
+function DisplayViewer() {
+  const { loading, error, data } = useQuery(GET_VIEWER);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error 🙁</p>;
 
-  return data.locations.map((location: any) => (
-    <div key={location.id}>
-      <h3>{location.name}</h3>
-      <img
-        width="400"
-        height="250"
-        alt="location-reference"
-        src={`${location.photo}`}
-      />
-      <br />
-      <b> About this location:</b>
-      <p>{location.description}</p>
-      <br />
+  return (
+    <div>
+      <img src={data.viewer.avatarUrl} />
+      <p>{data.viewer.name}</p>
+      <p>{data.viewer.login}</p>
+      <p>{data.viewer.bio}</p>
+      <p>Following: {data.viewer.following.totalCount}</p>
+      <p>Followers: {data.viewer.followers.totalCount}</p>
+      <p>{data.viewer.location}</p>
+      <p>{data.viewer.email}</p>
+      <p>{data.viewer.websiteUrl}</p>
+      <p>{data.viewer.twitterUsername}</p>
     </div>
-  ));
+  );
 }
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>My first Apollo app 🚀</p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <DisplayLocations />
+      <DisplayViewer />
     </div>
   );
 }

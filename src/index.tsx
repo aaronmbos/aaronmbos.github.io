@@ -10,10 +10,10 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_TOKEN } from "./constants";
+import { AUTH_TOKEN, GITHUB_GRAPHQL_ENDPOINT } from "./constants";
 
 const httpLink = createHttpLink({
-  uri: "https://flyby-gateway.herokuapp.com/",
+  uri: GITHUB_GRAPHQL_ENDPOINT,
 });
 
 const authLink = setContext((_, { headers }) => {
