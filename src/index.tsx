@@ -10,14 +10,16 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { AUTH_TOKEN, GITHUB_GRAPHQL_ENDPOINT } from "./constants";
+import { GITHUB_GRAPHQL_ENDPOINT } from "./constants";
+
+require("dotenv").config();
 
 const httpLink = createHttpLink({
   uri: GITHUB_GRAPHQL_ENDPOINT,
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = AUTH_TOKEN;
+  const token = process.env.GITHUB_AUTH_TOKEN;
   return {
     headers: {
       ...headers,
