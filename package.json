@@ -1,6 +1,6 @@
 {
   "name": "aaronmbos.github.io",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "homepage": "https://aaronmbos.github.io",
   "private": true,
   "dependencies": {
@@ -12,7 +12,6 @@
     "@types/node": "^16.11.64",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
-    "dotenv": "^16.0.3",
     "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,17 +28,10 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": ["react-app", "react-app/jest"]
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
+    "production": [">0.2%", "not dead", "not op_mini all"],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
