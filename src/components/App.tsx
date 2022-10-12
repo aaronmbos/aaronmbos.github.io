@@ -7,7 +7,6 @@ const GET_VIEWER = gql`
     viewer {
       name
       login
-      email
       avatarUrl
       location
       bio
