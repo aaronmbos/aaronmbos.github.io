@@ -7,16 +7,24 @@ const GET_VIEWER = gql`
     viewer {
       name
       login
-      avatarUrl
+      avatarUrl(size: 260)
       location
       bio
       twitterUsername
       websiteUrl
+      company
       followers {
         totalCount
       }
       following {
         totalCount
+      }
+      pinnedItems(first: 10, types: [REPOSITORY]) {
+        nodes {
+          ... on Repository {
+            name
+          }
+        }
       }
     }
   }
@@ -30,7 +38,11 @@ function DisplayViewer() {
 
   return (
     <div>
-      <img src={data.viewer.avatarUrl} />
+      <img
+        className="avatar"
+        alt="profile avatar"
+        src={data.viewer.avatarUrl}
+      />
       <p>{data.viewer.name}</p>
       <p>{data.viewer.login}</p>
       <p>{data.viewer.bio}</p>
@@ -39,7 +51,14 @@ function DisplayViewer() {
       <p>{data.viewer.location}</p>
       <p>{data.viewer.email}</p>
       <p>{data.viewer.websiteUrl}</p>
+      <p>{data.viewer.company}</p>
       <p>{data.viewer.twitterUsername}</p>
+      <h2>Repositories</h2>
+      <div>
+        {data.viewer.pinnedItems.nodes.map((pin: any) => {
+          return <p>{pin.name}</p>;
+        })}
+      </div>
     </div>
   );
 }

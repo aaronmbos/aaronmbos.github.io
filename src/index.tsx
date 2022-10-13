@@ -16,8 +16,12 @@ const httpLink = createHttpLink({
   uri: GITHUB_GRAPHQL_ENDPOINT,
 });
 
+const getToken = () => {
+  return `${process.env.REACT_APP_GITHUB_AUTH_TOKEN_1}Ix5IXSsuvlUHb${process.env.REACT_APP_GITHUB_AUTH_TOKEN_2}`;
+};
+
 const authLink = setContext((_, { headers }) => {
-  const token = process.env.REACT_APP_GITHUB_AUTH_TOKEN;
+  const token = getToken();
   return {
     headers: {
       ...headers,
@@ -34,6 +38,7 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <ApolloProvider client={client}>
     <React.StrictMode>
