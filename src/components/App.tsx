@@ -23,6 +23,16 @@ const GET_VIEWER = gql`
         nodes {
           ... on Repository {
             name
+            description
+            languages(first: 1, orderBy: { direction: DESC, field: SIZE }) {
+              nodes {
+                name
+                color
+              }
+            }
+            url
+            stargazerCount
+            forkCount
           }
         }
       }
@@ -53,10 +63,31 @@ function DisplayViewer() {
       <p>{data.viewer.websiteUrl}</p>
       <p>{data.viewer.company}</p>
       <p>{data.viewer.twitterUsername}</p>
-      <h2>Repositories</h2>
+      <h2>Pinned Repositories</h2>
       <div>
-        {data.viewer.pinnedItems.nodes.map((pin: any) => {
-          return <p>{pin.name}</p>;
+        {data.viewer.pinnedItems.nodes.map((repo: any) => {
+          return (
+            <>
+              <p>
+                <a href={repo.url} rel="noreferrer" target="_blank">
+                  <strong>{repo.name}</strong>
+                </a>
+              </p>
+              <p>{repo.description}</p>
+              {repo.languages.nodes.length > 0 && (
+                <p>
+                  <span style={{ color: repo.languages.nodes[0].color }}>
+                    ●
+                  </span>{" "}
+                  {repo.languages.nodes[0].name}
+                </p>
+              )}
+              <p>
+                <span>★</span> {repo.stargazerCount}
+              </p>
+              <p>Forks: {repo.forkCount}</p>
+            </>
+          );
         })}
       </div>
     </div>
