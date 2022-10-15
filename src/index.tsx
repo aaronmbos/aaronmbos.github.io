@@ -11,6 +11,10 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { GITHUB_GRAPHQL_ENDPOINT } from "./constants";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 const httpLink = createHttpLink({
   uri: GITHUB_GRAPHQL_ENDPOINT,

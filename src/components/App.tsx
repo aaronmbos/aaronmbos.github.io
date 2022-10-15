@@ -1,6 +1,9 @@
 import React from "react";
 import "../styles/App.css";
 import { useQuery, gql } from "@apollo/client";
+import CssBaseline from '@mui/material/CssBaseline';
+import Avatar from '@mui/material/Avatar';
+import Container from '@mui/material/Container';
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -48,10 +51,10 @@ function DisplayViewer() {
 
   return (
     <div>
-      <img
-        className="avatar"
-        alt="profile avatar"
+      <Avatar
         src={data.viewer.avatarUrl}
+        alt="profile avatar"
+        sx={{width: 260, height: 260}}
       />
       <p>{data.viewer.name}</p>
       <p>{data.viewer.login}</p>
@@ -96,9 +99,12 @@ function DisplayViewer() {
 
 function App() {
   return (
-    <div className="App">
-      <DisplayViewer />
-    </div>
+    <>
+      <CssBaseline />
+      <Container>
+        <DisplayViewer />
+      </Container>
+    </>
   );
 }
 
