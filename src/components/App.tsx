@@ -4,6 +4,15 @@ import { useQuery, gql } from "@apollo/client";
 import CssBaseline from '@mui/material/CssBaseline';
 import Avatar from '@mui/material/Avatar';
 import Container from '@mui/material/Container';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import FolderIcon from '@mui/icons-material/Folder';
+import BusinessIcon from '@mui/icons-material/Business';
+import LanguageIcon from '@mui/icons-material/Language';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -56,16 +65,55 @@ function DisplayViewer() {
         alt="profile avatar"
         sx={{width: 260, height: 260}}
       />
-      <p>{data.viewer.name}</p>
-      <p>{data.viewer.login}</p>
-      <p>{data.viewer.bio}</p>
+      <List dense={true}> 
+        <ListItem>
+          <ListItemText
+            primary={data.viewer.name}
+            primaryTypographyProps={{variant: "h6"}}
+            secondary={data.viewer.login}
+            secondaryTypographyProps={{variant: "subtitle1"}}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemText
+            primary={data.viewer.bio}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LocationOnIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={data.viewer.location}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LanguageIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={data.viewer.websiteUrl}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <BusinessIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={data.viewer.company}
+          />
+        </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <TwitterIcon />
+          </ListItemIcon>
+          <ListItemText
+            primary={data.viewer.twitterUsername}
+          />
+        </ListItem>
+      </List>
       <p>Following: {data.viewer.following.totalCount}</p>
       <p>Followers: {data.viewer.followers.totalCount}</p>
-      <p>{data.viewer.location}</p>
-      <p>{data.viewer.email}</p>
-      <p>{data.viewer.websiteUrl}</p>
-      <p>{data.viewer.company}</p>
-      <p>{data.viewer.twitterUsername}</p>
       <h2>Pinned Repositories</h2>
       <div>
         {data.viewer.pinnedItems.nodes.map((repo: any) => {
