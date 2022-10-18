@@ -1,18 +1,17 @@
 import React from "react";
 import "../styles/App.css";
 import { useQuery, gql } from "@apollo/client";
-import CssBaseline from '@mui/material/CssBaseline';
-import Avatar from '@mui/material/Avatar';
-import Container from '@mui/material/Container';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import FolderIcon from '@mui/icons-material/Folder';
-import BusinessIcon from '@mui/icons-material/Business';
-import LanguageIcon from '@mui/icons-material/Language';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import CssBaseline from "@mui/material/CssBaseline";
+import Avatar from "@mui/material/Avatar";
+import Container from "@mui/material/Container";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import BusinessIcon from "@mui/icons-material/Business";
+import LanguageIcon from "@mui/icons-material/Language";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -63,53 +62,43 @@ function DisplayViewer() {
       <Avatar
         src={data.viewer.avatarUrl}
         alt="profile avatar"
-        sx={{width: 260, height: 260}}
+        sx={{ width: 260, height: 260 }}
       />
-      <List dense={true}> 
+      <List dense={true}>
         <ListItem>
           <ListItemText
             primary={data.viewer.name}
-            primaryTypographyProps={{variant: "h6"}}
+            primaryTypographyProps={{ variant: "h6" }}
             secondary={data.viewer.login}
-            secondaryTypographyProps={{variant: "subtitle1"}}
+            secondaryTypographyProps={{ variant: "subtitle1" }}
           />
         </ListItem>
         <ListItem>
-          <ListItemText
-            primary={data.viewer.bio}
-          />
+          <ListItemText primary={data.viewer.bio} />
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <LocationOnIcon />
           </ListItemIcon>
-          <ListItemText
-            primary={data.viewer.location}
-          />
+          <ListItemText primary={data.viewer.location} />
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <LanguageIcon />
           </ListItemIcon>
-          <ListItemText
-            primary={data.viewer.websiteUrl}
-          />
+          <ListItemText primary={data.viewer.websiteUrl} />
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <BusinessIcon />
           </ListItemIcon>
-          <ListItemText
-            primary={data.viewer.company}
-          />
+          <ListItemText primary={data.viewer.company} />
         </ListItem>
         <ListItem>
           <ListItemIcon>
             <TwitterIcon />
           </ListItemIcon>
-          <ListItemText
-            primary={data.viewer.twitterUsername}
-          />
+          <ListItemText primary={data.viewer.twitterUsername} />
         </ListItem>
       </List>
       <p>Following: {data.viewer.following.totalCount}</p>
