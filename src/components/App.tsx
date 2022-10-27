@@ -12,6 +12,11 @@ import BusinessIcon from "@mui/icons-material/Business";
 import LanguageIcon from "@mui/icons-material/Language";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Grid from "@mui/material/Unstable_Grid2";
+import PeopleIcon from "@mui/icons-material/People";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -58,79 +63,99 @@ function DisplayViewer() {
   if (error) return <p>Error 🙁</p>;
 
   return (
-    <div>
-      <Avatar
-        src={data.viewer.avatarUrl}
-        alt="profile avatar"
-        sx={{ width: 260, height: 260 }}
-      />
-      <List dense={true}>
-        <ListItem>
-          <ListItemText
-            primary={data.viewer.name}
-            primaryTypographyProps={{ variant: "h6" }}
-            secondary={data.viewer.login}
-            secondaryTypographyProps={{ variant: "subtitle1" }}
+    <>
+      <Grid container spacing={2}>
+        <Grid xs={3}>
+          <Avatar
+            src={data.viewer.avatarUrl}
+            alt="profile avatar"
+            sx={{ width: 260, height: 260 }}
           />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary={data.viewer.bio} />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <LocationOnIcon />
-          </ListItemIcon>
-          <ListItemText primary={data.viewer.location} />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <LanguageIcon />
-          </ListItemIcon>
-          <ListItemText primary={data.viewer.websiteUrl} />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <BusinessIcon />
-          </ListItemIcon>
-          <ListItemText primary={data.viewer.company} />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <TwitterIcon />
-          </ListItemIcon>
-          <ListItemText primary={data.viewer.twitterUsername} />
-        </ListItem>
-      </List>
-      <p>Following: {data.viewer.following.totalCount}</p>
-      <p>Followers: {data.viewer.followers.totalCount}</p>
-      <h2>Pinned Repositories</h2>
-      <div>
-        {data.viewer.pinnedItems.nodes.map((repo: any) => {
-          return (
-            <>
-              <p>
-                <a href={repo.url} rel="noreferrer" target="_blank">
-                  <strong>{repo.name}</strong>
-                </a>
-              </p>
-              <p>{repo.description}</p>
-              {repo.languages.nodes.length > 0 && (
-                <p>
-                  <span style={{ color: repo.languages.nodes[0].color }}>
-                    ●
-                  </span>{" "}
-                  {repo.languages.nodes[0].name}
-                </p>
-              )}
-              <p>
-                <span>★</span> {repo.stargazerCount}
-              </p>
-              <p>Forks: {repo.forkCount}</p>
-            </>
-          );
-        })}
-      </div>
-    </div>
+          <List dense={true}>
+            <ListItem>
+              <ListItemText
+                primary={data.viewer.name}
+                primaryTypographyProps={{ variant: "h6" }}
+                secondary={data.viewer.login}
+                secondaryTypographyProps={{ variant: "subtitle1" }}
+              />
+            </ListItem>
+            <ListItem>
+              <ListItemText primary={data.viewer.bio} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <LocationOnIcon />
+              </ListItemIcon>
+              <ListItemText primary={data.viewer.location} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <LanguageIcon />
+              </ListItemIcon>
+              <ListItemText primary={data.viewer.websiteUrl} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <BusinessIcon />
+              </ListItemIcon>
+              <ListItemText primary={data.viewer.company} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <TwitterIcon />
+              </ListItemIcon>
+              <ListItemText primary={data.viewer.twitterUsername} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={`Following: ${data.viewer.following.totalCount} · Followers: ${data.viewer.followers.totalCount}`}
+              />
+            </ListItem>
+          </List>
+        </Grid>
+        <Grid xs={9}>
+          <div>
+            <Grid container spacing={1}>
+              {data.viewer.pinnedItems.nodes.map((repo: any) => {
+                return (
+                  <Grid xs={6}>
+                    <Card>
+                      <CardContent>
+                        <Typography sx={{ mb: 1 }}>
+                          <a href={repo.url} rel="noreferrer" target="_blank">
+                            <strong>{repo.name}</strong>
+                          </a>
+                        </Typography>
+                        <Typography sx={{ fontSize: 14 }}>
+                          {repo.description}
+                        </Typography>
+                        <Typography sx={{ fontSize: 14 }}>
+                          {repo.languages.nodes.length > 0 && (
+                            <>
+                              <span
+                                style={{ color: repo.languages.nodes[0].color }}
+                              >
+                                ●
+                              </span>{" "}
+                              {repo.languages.nodes[0].name}{" "}
+                              {repo.stargazerCount} {repo.forkCount}
+                            </>
+                          )}
+                        </Typography>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                );
+              })}
+            </Grid>
+          </div>
+        </Grid>
+      </Grid>
+    </>
   );
 }
 
