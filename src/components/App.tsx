@@ -52,6 +52,11 @@ const GET_VIEWER = gql`
           }
         }
       }
+      repositories(first: 5, orderBy: { direction: DESC, field: PUSHED_AT }) {
+        nodes {
+          name
+        }
+      }
     }
   }
 `;
@@ -155,6 +160,11 @@ function DisplayViewer() {
           </div>
         </Grid>
       </Grid>
+      <div>
+        {data.viewer.repositories.nodes.map((repo: any) => {
+          return <p>{repo.name}</p>;
+        })}
+      </div>
     </>
   );
 }
@@ -163,7 +173,7 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <Container>
+      <Container sx={{ my: 4 }}>
         <DisplayViewer />
       </Container>
     </>
