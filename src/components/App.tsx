@@ -1,22 +1,12 @@
-import React from "react";
 import "../styles/App.css";
 import { useQuery, gql } from "@apollo/client";
 import CssBaseline from "@mui/material/CssBaseline";
-import Avatar from "@mui/material/Avatar";
 import Container from "@mui/material/Container";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import BusinessIcon from "@mui/icons-material/Business";
-import LanguageIcon from "@mui/icons-material/Language";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import Grid from "@mui/material/Unstable_Grid2";
-import PeopleIcon from "@mui/icons-material/People";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import { Profile } from "./Profile";
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -70,58 +60,20 @@ function DisplayViewer() {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid xs={3}>
-          <Avatar
-            src={data.viewer.avatarUrl}
-            alt="profile avatar"
-            sx={{ width: 260, height: 260 }}
-          />
-          <List dense={true}>
-            <ListItem>
-              <ListItemText
-                primary={data.viewer.name}
-                primaryTypographyProps={{ variant: "h6" }}
-                secondary={data.viewer.login}
-                secondaryTypographyProps={{ variant: "subtitle1" }}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText primary={data.viewer.bio} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <LocationOnIcon />
-              </ListItemIcon>
-              <ListItemText primary={data.viewer.location} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <LanguageIcon />
-              </ListItemIcon>
-              <ListItemText primary={data.viewer.websiteUrl} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <BusinessIcon />
-              </ListItemIcon>
-              <ListItemText primary={data.viewer.company} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <TwitterIcon />
-              </ListItemIcon>
-              <ListItemText primary={data.viewer.twitterUsername} />
-            </ListItem>
-            <ListItem>
-              <ListItemIcon>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary={`Following: ${data.viewer.following.totalCount} · Followers: ${data.viewer.followers.totalCount}`}
-              />
-            </ListItem>
-          </List>
-        </Grid>
+        <Profile
+          data={{
+            name: data.viewer.name as string,
+            avatarUrl: data.viewer.avatarUrl as string,
+            login: data.viewer.login as string,
+            bio: data.viewer.bio as string,
+            location: data.viewer.location as string,
+            websiteUrl: data.viewer.websiteUrl as string,
+            company: data.viewer.company as string,
+            twitterUsername: data.viewer.twitterUsername as string,
+            followerCount: data.viewer.followers.totalCount as number,
+            followingCount: data.viewer.following.totalCount as number,
+          }}
+        />
         <Grid xs={9}>
           <div>
             <Grid container spacing={1}>
