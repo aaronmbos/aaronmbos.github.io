@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Profile } from "./Profile";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const GET_VIEWER = gql`
   query GetViewer {
@@ -121,14 +122,20 @@ function DisplayViewer() {
   );
 }
 
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
 function App() {
   return (
-    <>
+    <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Container sx={{ my: 4 }}>
         <DisplayViewer />
       </Container>
-    </>
+    </ThemeProvider>
   );
 }
 
