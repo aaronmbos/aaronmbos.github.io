@@ -26,7 +26,7 @@ export interface ProfileProps {
 }
 export function Profile({ data }: ProfileProps) {
   return (
-    <Grid xs={3}>
+    <Grid xs={3} sx={{ pt: 6 }}>
       <Avatar
         src={data.avatarUrl}
         alt="profile avatar"

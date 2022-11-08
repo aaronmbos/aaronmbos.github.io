@@ -14,7 +14,7 @@ const GET_VIEWER = gql`
     viewer {
       name
       login
-      avatarUrl(size: 260)
+      avatarUrl(size: 720)
       location
       bio
       twitterUsername
@@ -47,6 +47,12 @@ const GET_VIEWER = gql`
         nodes {
           name
         }
+        pageInfo {
+          endCursor
+          hasNextPage
+          hasPreviousPage
+          startCursor
+        }
       }
     }
   }
@@ -60,7 +66,7 @@ function DisplayViewer() {
 
   return (
     <>
-      <Grid container spacing={2}>
+      <Grid container spacing={6}>
         <Profile
           data={{
             name: data.viewer.name as string,
@@ -76,41 +82,48 @@ function DisplayViewer() {
           }}
         />
         <Grid xs={9}>
-          <div>
-            <Grid container spacing={1}>
-              {data.viewer.pinnedItems.nodes.map((repo: any) => {
-                return (
-                  <Grid xs={6}>
-                    <Card>
-                      <CardContent>
-                        <Typography sx={{ mb: 1 }}>
-                          <a href={repo.url} rel="noreferrer" target="_blank">
-                            <strong>{repo.name}</strong>
-                          </a>
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }}>
-                          {repo.description}
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }}>
-                          {repo.languages.nodes.length > 0 && (
-                            <>
-                              <span
-                                style={{ color: repo.languages.nodes[0].color }}
-                              >
-                                ●
-                              </span>{" "}
-                              {repo.languages.nodes[0].name}{" "}
-                              {repo.stargazerCount} {repo.forkCount}
-                            </>
-                          )}
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })}
-            </Grid>
-          </div>
+          <Grid container spacing={1}>
+            <div
+              style={{
+                width: "100%",
+                display: "inline-block",
+                marginBottom: "1em",
+              }}
+            >
+              <Typography variant="h5">Pinned repositories</Typography>
+            </div>
+            {data.viewer.pinnedItems.nodes.map((repo: any) => {
+              return (
+                <Grid xs={6}>
+                  <Card>
+                    <CardContent>
+                      <Typography sx={{ mb: 1 }}>
+                        <a href={repo.url} rel="noreferrer" target="_blank">
+                          <strong>{repo.name}</strong>
+                        </a>
+                      </Typography>
+                      <Typography sx={{ fontSize: 14 }}>
+                        {repo.description}
+                      </Typography>
+                      <Typography sx={{ fontSize: 14 }}>
+                        {repo.languages.nodes.length > 0 && (
+                          <>
+                            <span
+                              style={{ color: repo.languages.nodes[0].color }}
+                            >
+                              ●
+                            </span>{" "}
+                            {repo.languages.nodes[0].name} {repo.stargazerCount}{" "}
+                            {repo.forkCount}
+                          </>
+                        )}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Grid>
       </Grid>
       <div>
